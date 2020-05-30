@@ -1,0 +1,88 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TechXplore</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+	<style>
+		table{
+			border:1px solid black;
+		}
+		table thead tr th{
+			text-transform: uppercase;
+		}
+		h3{
+			margin: 20px;
+		}
+		.row{
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1 style="padding: 20px"><span th:text="${clerk.name}"></span> - Grocery Bill</h1><br>
+		<div class="row col-md-6">
+			<table id="regularBill" class="table" >
+				<thead>
+					<tr>
+						<th>items</th>
+						<th>price</th>
+						<th>discount %</th>
+						<th>discounted</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item, rowStat: ${regularBill.itemList}"
+						th:style="${rowStat.odd} ? 'background-color: white' : 'background-color: lightblue;'">
+						<td th:text="${item.name}"></td>
+						<td th:text="${item.price}"></td>
+						<td th:text="${item.discountPercentage}"></td>
+						<td th:text="${item.discounted}"></td>
+					</tr>
+				</tbody>
+				<tfooter>
+				<tr th:style="'background-color: lightgray'">
+					<td >Total Regular Bill: </td>
+					<td th:text="${regularBill.totalBill}" colspan="3">123</td>
+				</tfooter>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="row col-md-6" >
+			<table id="discountedBill" class="table">
+				<thead>
+					<tr>
+						<th>items</th>
+						<th>price</th>
+						<th>discount %</th>
+						<th>discounted</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item, rowStat: ${discountedBill.itemList}"
+						th:style="${rowStat.odd} ? 'background-color: white' : 'background-color: lightpink;'">
+						<td th:text="${item.name}"></td>
+						<td th:text="${item.price}"></td>
+						<td th:text="${item.discountPercentage}"></td>
+						<td th:text="${item.discounted}"></td>
+					</tr>
+				</tbody>
+				<tfooter >
+				<tr th:style="'background-color: lightgray'">
+					<td >Total Discounted Bill: </td>
+					<td th:text="${discountedBill.totalBill}" colspan="3"></td>
+					</tr>
+				</tfooter>
+			</table>
+		</div>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
