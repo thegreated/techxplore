@@ -16,7 +16,7 @@ public class GroceryBillController {
 	@GetMapping("/grocery")
 	public String getIndexPage(Model model) {
 
-		GroceryBill regularBill = restTemplate.getForObject("http://webservice/items/bill/regular", GroceryBill.class);
+		GroceryBill regularBill = restTemplate.getForObject("hsttp://webservice/items/bill/regular", GroceryBill.class);
 		model.addAttribute("clerk", regularBill.getClerk());
 		model.addAttribute("regularBill", regularBill);
 
